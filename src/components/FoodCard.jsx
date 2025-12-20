@@ -59,7 +59,7 @@ const FoodCard = ({ name, image, id, catogerys, price, type, rating, reviews }) 
                     <button className='w-full bg-green-500 text-white py-2 mt-4 
                                         rounded-xl font-semibold text-lg 
                                         hover:bg-green-600 active:scale-95 
-                                        transition-all duration-200'>
+                                        transition-all duration-200 cursor-pointer'>
                         Add to Cart
                     </button>
 

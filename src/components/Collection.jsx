@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdOutlineArrowForward } from "react-icons/md";
 import { MdOutlineArrowBack } from "react-icons/md";
 import CatogeryCard from './CatogeryCard';
 import catogerys from '../Catogery';
 
+const Collection = ({onFilter}) => {
 
-const Collection = () => {
     return (
         <div>
             <div className='w-full h-80 flex items-center justify-center ' >
@@ -22,15 +22,25 @@ const Collection = () => {
                     </div>
                     {/* menu */}
                     <div className='flex overflow-x-scroll overflow-y-hidden no-scrollbar h-48 gap-5'>
-                        {catogerys.map((item,idx) => {
-                            return <div key={idx}
+                        {/* Add "All" button first */}
+                        <div onClick={() => onFilter("All")} className='cursor-pointer'>
+                            <CatogeryCard image="all_image_here" name="All" />
+                        </div>
+                        
+                        {catogerys.map((item, idx) => {
+                            return <div 
+                                onClick={() => onFilter(item.name || item.category)} // Call the filter function
+                                className='cursor-pointer'
+                                key={idx}
                             >
-                            <CatogeryCard image={item.image} />
-                            </div>
+                                <CatogeryCard image={item.image} name={item.name} />
+                            </div> 
                         })}
                     </div>
                 </div>
             </div>
+
+
         </div>
     )
 }
