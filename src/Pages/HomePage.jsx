@@ -8,6 +8,7 @@ import { food_items } from '../assets/food'
 import { DataContext } from '../Context/UseContext'
 import { RxCross2 } from "react-icons/rx";
 import CartCard from '../components/CartCard'
+import { useSelector } from 'react-redux'
 
 const HomePage = () => {
     let { dishes, setDishes, showCart, setShowCart } = useContext(DataContext)
@@ -24,9 +25,7 @@ const HomePage = () => {
         }
     }
 
-
-
-
+   
     return (
         <div className='w-full h-screen min-h-screen bg-[#FFFFFF]'>
             <Navbar />
@@ -35,19 +34,21 @@ const HomePage = () => {
                 {dishes.map((item, idx) => {
                     return <div
                         key={idx}>
-                        <FoodCard name={item.food_name} image={item.food_image} id={item.food_id} catogerys={item.food_category} price={item.price} type={item.food_type} />
+                        <FoodCard name={item.food_name} image={item.food_image} id={item.id} catogerys={item.food_category} price={item.price} type={item.food_type} />
                     </div>
                 })}
             </div>
             {/* Add to cart section */}
-            <div className={` w-full md:w-[75vh] h-screen shadow-xl fixed top-0 right-0 px-4 bg-[#FFFFFF] transition-all duration-500 ${showCart?"translate-x-0" : "translate-x-full"}`} >
+            <div className={` w-full md:w-[75vh] h-screen shadow-xl fixed top-0 right-0 px-4 bg-[#FFFFFF] transition-all duration-500 ${showCart ? "translate-x-0" : "translate-x-full"}`} >
                 <header className='flex justify-between mt-2 p-2'>
                     <span className='text-xl font-semibold text-green-400 cursor-pointer'>Order items</span>
                     <RxCross2 className='text-green-400 font-bold text-[18px] h-8 w-7 cursor-pointer hover:text-gray-600 '
-                    onClick={()=>setShowCart(false)}
+                        onClick={() => setShowCart(false)}
                     />
                 </header>
-                <CartCard />
+               {/* {items.map(()=>{
+                return <CartCard />
+               })} */}
             </div>
         </div>
     )
