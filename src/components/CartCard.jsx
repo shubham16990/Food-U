@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const CartCard = ({id,name,price,qty,image}) => {
 
-  
+  let dispatch = useDispatch()
 
   return (
     <div className='c] w-full h-32 rounded-xl shadow-2xl flex justify-between  '>
@@ -27,7 +27,7 @@ const CartCard = ({id,name,price,qty,image}) => {
       {/* Right sight */}
       <div className=' flex flex-col justify-start items-end gap-6 px-2'>
         <span className='text-xl text-green-400 font-semibold'>Rs {price}/-</span>
-        <ImBin className='text-xl text-red-400 cursor-pointer '  />
+        <ImBin className='text-xl text-red-400 cursor-pointer ' onClick={()=>dispatch(RemoveItem(id))}   />
       </div>
     </div>
   )

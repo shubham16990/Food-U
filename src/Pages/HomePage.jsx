@@ -25,9 +25,17 @@ const HomePage = () => {
         }
     }
 
-   
+    let items = useSelector((state) => state.cart.item)
+
+   let subTotal = items.reduce((total,item)=>{
+    return total+item.price * item.qty
+   },0)
+  let deliverFee = 20;
+  let taxes = subTotal*0.6/100;
+  let total = subTotal + deliverFee + taxes ;
+
     return (
-        <div className='w-full h-screen min-h-screen bg-[#FFFFFF]'>
+        <div className='w-full h-screen min-h-screen max-h-screen bg-[#FFFFFF]'>
             <Navbar />
             <Collection onFilter={filterDish} />
             <div className='flex items-center justify-center overflow-hidden flex-wrap'>
@@ -46,9 +54,16 @@ const HomePage = () => {
                         onClick={() => setShowCart(false)}
                     />
                 </header>
-               {/* {items.map(()=>{
-                return <CartCard />
-               })} */}
+                <div className=" flex flex-col gap-3 mt-5
+               w-full overflow-y-auto h-screen cursor-pointer  scrollbar-hide ">
+                    {items.map((item) => {
+                        return <div>
+                            <CartCard name={item.name} image={item.image} price={item.price} id={item.id} qty={item.qty} />
+                        </div>
+                    })}
+                    
+                </div>  
+                
             </div>
         </div>
     )

@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/cartSlice';
 import { food_items } from '../assets/food';
 
-const FoodCard = ({type,image,price,catogerys,name,id, rating, reviews}) => {
+const FoodCard = ({ type, image, price, catogerys, name, id, rating, reviews }) => {
 
-let dispatch = useDispatch()
+    let dispatch = useDispatch()
     return (
         <div className='w-full p-2'>
             <div className='bg-white rounded-2xl shadow-lg overflow-hidden  
@@ -65,19 +65,19 @@ let dispatch = useDispatch()
                                         rounded-xl font-semibold text-lg 
                                         hover:bg-green-600 active:scale-95 
                                         transition-all duration-200 cursor-pointer'
-                                       onClick={() =>
-  dispatch(AddItem({
-    id,
-    image,
-    price,
-    qty: 1,
-    name,
-    type
-  }))
-}
+                        onClick={() =>
+                            dispatch(AddItem({
+                                id,
+                                image,
+                                price,
+                                qty: 1,
+                                name,
+                                type
+                            }))
+                        }
 
-                                        >
-                        Add to Cart 
+                    >
+                        Add to Cart
                     </button>
                 </div>
             </div>
