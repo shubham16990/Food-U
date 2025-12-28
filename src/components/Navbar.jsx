@@ -36,7 +36,7 @@ const Navbar = () => {
         setShowCart(true)
     }
 
-    let items = useSelector((state)=>state.cart.item)
+    let items = useSelector((state)=>state.cart)
     console.log(items)
 
     return (

@@ -25,11 +25,11 @@ const HomePage = () => {
         }
     }
 
-    let items = useSelector((state) => state.cart.item)
+    let items = useSelector((state) => state.cart)
+let subTotal = items.reduce((total, item) => {
+  return total + item.price * item.qty;
+}, 0);
 
-    let subTotal = items.reduce((total, item) => {
-        return total + item.price * item.qty
-    }, 0)
     let deliverFee = 20;
     let taxes = subTotal * 0.6 / 100;
     let total = Math.floor(subTotal + deliverFee + taxes);
@@ -49,7 +49,7 @@ const HomePage = () => {
             {/* Add to cart section */}
             <div
                 className={`w-full md:w-[75vh] h-screen shadow-xl fixed top-0 right-0 px-4 bg-[#FFFFFF]
-  transition-all duration-500 flex flex-col 
+  transition-all duration-500 flex flex-col overflow-auto 
   ${showCart ? "translate-x-0" : "translate-x-full"}`}
             >
 

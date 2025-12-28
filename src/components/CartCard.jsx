@@ -1,7 +1,7 @@
 import React from 'react'
 import image1 from "../assets/assets/image1.avif"
 import { ImBin } from "react-icons/im";
-import { RemoveItem } from '../redux/cartSlice';
+import { DecrementQty, IncrementQty, RemoveItem } from '../redux/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CartCard = ({id,name,price,qty,image}) => {
@@ -17,9 +17,13 @@ const CartCard = ({id,name,price,qty,image}) => {
         <div className='flex flex-col w-[40%] '>
           <span className='text-md font-semibold mb-3 '>{name}</span>
           <div className='bg-gray-300 border-b-gray-300 flex rounded-xl h-7 w-full overflow-hidden px-2 font-semibold shadow-md'>
-            <button className='w-[30%] bg-slate-300 h-full rounded-l-xl flex items-center justify-center t'>-</button>
+            <button className='w-[30%] bg-slate-300 h-full rounded-l-xl flex items-center justify-center t'
+            onClick={()=>{dispatch(DecrementQty(id))}}
+            >-</button>
             <span className='w-[40%] bg-white text-center flex items-center justify-center'>{qty}</span>
-            <button className='w-[30%] bg-slate-300 h-full rounded-r-xl flex items-center justify-center '>+</button>
+            <button className='w-[30%] bg-slate-300 h-full rounded-r-xl flex items-center justify-center '
+            onClick={()=>{dispatch(IncrementQty(id))}}
+            >+</button>
           </div>
 
         </div>
