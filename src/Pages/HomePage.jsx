@@ -9,6 +9,7 @@ import { DataContext } from '../Context/UseContext'
 import { RxCross2 } from "react-icons/rx";
 import CartCard from '../components/CartCard'
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 
 const HomePage = () => {
     let { dishes, setDishes, showCart, setShowCart } = useContext(DataContext)
@@ -39,12 +40,14 @@ let subTotal = items.reduce((total, item) => {
             <Navbar />
             <Collection onFilter={filterDish} />
             <div className='flex items-center justify-center overflow-hidden flex-wrap'>
-                {dishes.map((item, idx) => {
+
+                {dishes.length > 1 ? dishes.map((item, idx) => {
                     return <div
                         key={idx}>
                         <FoodCard name={item.food_name} image={item.food_image} id={item.id} catogerys={item.food_category} price={item.price} type={item.food_type} />
                     </div>
-                })}
+                }) : <div className='text-center text-2xl text-green-400 font-semibold mt-20'>No Dish found...</div>} 
+                
             </div>
             {/* Add to cart section */}
             <div
@@ -60,6 +63,7 @@ let subTotal = items.reduce((total, item) => {
                         onClick={() => setShowCart(false)}
                     />
                 </header>
+               {items.length > 0 ?  <>
                 <div className=" flex flex-col  gap-3 mt-5 w-full overflow-y-auto h-[100%] cursor-pointer scrollbar-hide p-3   ">
                     {items.map((item) => {
                         return <div className=''>
@@ -87,9 +91,15 @@ let subTotal = items.reduce((total, item) => {
                         <span className='text-lg text-green-400 font-semibold '>Rs {total}/-</span>
                     </div>
 
-                    <button className='mb-10 bg-green-500 text-xl px-5 py-2 rounded-md mt-2 hover:bg-green-400 transition-all duration-300 ease-in-out cursor-pointer hover:scale-105 hover:shadow-lg active:scale-95'>place Order</button>
+                    <button className='mb-10 bg-green-500 text-xl px-5 py-2 rounded-md mt-2 hover:bg-green-400 transition-all duration-300 ease-in-out cursor-pointer hover:scale-105 hover:shadow-lg active:scale-95'
+                    onClick={ () => {
+                       toast.success("Order Placed")
+                    }}
+                    >place Order</button>
 
                 </div>
+                </> : <div className='text-center text-2xl font-semibold text-green-400 mt-40'>Empty Cart....</div> }
+               
 
             </div>
         </div>

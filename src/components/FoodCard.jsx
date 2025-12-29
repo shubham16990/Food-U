@@ -4,6 +4,7 @@ import { GiChickenOven } from "react-icons/gi";
 import { useDispatch } from 'react-redux';
 import { AddItem } from '../redux/cartSlice';
 import { food_items } from '../assets/food';
+import { toast } from 'react-toastify';
 
 const FoodCard = ({ type, image, price, catogerys, name, id, rating, reviews }) => {
 
@@ -66,14 +67,16 @@ const FoodCard = ({ type, image, price, catogerys, name, id, rating, reviews }) 
                                         hover:bg-green-600 active:scale-95 
                                         transition-all duration-200 cursor-pointer'
                         onClick={() =>
-                            dispatch(AddItem({
+                            {dispatch(AddItem({
                                 id,
                                 image,
                                 price,
                                 qty: 1,
                                 name,
                                 type
-                            }))
+                            }));
+                        toast.success("item added")
+                        }
                         }
 
                     >

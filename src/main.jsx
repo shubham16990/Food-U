@@ -5,6 +5,7 @@ import App from './App.jsx'
 import UseContext from './Context/UseContext.jsx';
 import { Provider } from 'react-redux';
 import { store } from './redux/store.js';
+import { ToastContainer } from 'react-toastify';
 
 
 createRoot(document.getElementById('root')).render(
@@ -12,6 +13,7 @@ createRoot(document.getElementById('root')).render(
   <Provider store={store} >
   <UseContext>
     <App />
+    <ToastContainer />
   </UseContext>
   </Provider>
 );
